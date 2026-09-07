@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import argparse
 
-def create_markdown_template(directory_path):
+def create_markdown_template(directory_path, overwrite=False):
     target_dir = Path(directory_path).resolve()
     current_script_path = Path(__file__).resolve()
     
@@ -13,6 +13,13 @@ def create_markdown_template(directory_path):
         sys.exit(1)
 
     output_filename = f"{target_dir.name}.md"
+    out_file = target_dir / output_filename
+    
+    # 이미 파일이 존재하는지 검사
+    if out_file.exists() and not overwrite:
+        print(f"알림: '{out_file.name}' 파일이 이미 존재합니다. 기존 내용 보호를 위해 작업을 중단합니다.")
+        print("💡 (새 파일명으로 작성하거나 덮어쓰려면 -f / --force 옵션을 사용하세요.)")
+        return
     
     # .py 파일과 .ipynb 파일 모두 찾기
     py_files = list(target_dir.glob("*.py"))
@@ -68,7 +75,6 @@ def create_markdown_template(directory_path):
             
         md_lines.append("---\n")
 
-    out_file = target_dir / output_filename
     with open(out_file, 'w', encoding='utf-8') as f:
         f.write("\n".join(md_lines))
         
@@ -77,9 +83,10 @@ def create_markdown_template(directory_path):
 def main():
     parser = argparse.ArgumentParser(description="디렉터리 내의 모든 .py와 .ipynb 파일을 '디렉터리_이름.md' 파일로 병합합니다.")
     parser.add_argument("directory", help="변환할 파일들이 있는 디렉터리 경로")
+    parser.add_argument("-f", "--force", action="store_true", help="기존 .md 파일이 존재하더라도 강제로 덮어씁니다.")
     args = parser.parse_args()
     
-    create_markdown_template(args.directory)
+    create_markdown_template(args.directory, overwrite=args.force)
 
 if __name__ == '__main__':
     main()
