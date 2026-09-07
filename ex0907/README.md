@@ -1,3 +1,13 @@
+# Pydantic
+
+## json
+
+----
+
+* 예시 코드
+
+
+```python
 from datetime import datetime
 from pydantic import BaseModel, PositiveInt
 
@@ -24,3 +34,4 @@ user = User(**external_data) # **은 딕셔너리 언패킹
 
 print(user.id)
 print(user.model_dump())
+```
