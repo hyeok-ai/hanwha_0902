@@ -122,7 +122,7 @@ myfunc()
 print(x)
 ```
 
-* 전역 변수 키워드 global
+* 전역 변수 키워드 global (전역 변수 x의 값이 fantastic이 됨)
 
 <br>
 

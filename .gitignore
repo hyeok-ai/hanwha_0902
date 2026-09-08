@@ -1,3 +1,5 @@
+.auto_named_md_converter.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
