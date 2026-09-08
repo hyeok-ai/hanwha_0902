@@ -82,7 +82,7 @@ print(myvar)
 
 ---
 
-## 파일: `ctrlcv.py`
+## 파일: `1_list.py`
 
 ```python
 title = "AI 서비스 백엔드 프로그래밍 실무"
@@ -104,7 +104,7 @@ print(myList[4], time)
 
 ---
 
-## 파일: `ctrlcv2.py`
+## 파일: `2_for.py`
 
 ```python
 title = "AI 서비스 백엔드 프로그래밍 실무"
@@ -124,7 +124,7 @@ for lecture in myList:
 
 ---
 
-## 파일: `ctrlcv3.py`
+## 파일: `3_function.py`
 
 ```python
 def fahrenheit_to_celsius(fahrenheit):
@@ -164,7 +164,7 @@ print(x+y)
 ---
 
 
-## 파일: `test.py`
+## 파일: `print_format.py`
 
 ```python
 title = "AI 서비스 백엔드 프로그래밍 실무"

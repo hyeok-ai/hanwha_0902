@@ -128,21 +128,6 @@ print(x)
 
 ---
 
-## 파일: `ctrlcv5.py`
-
-```python
-print(str(1))
-str=1
-print(str)
-print(str(1))
-```
-
-* 변수 이름 str
-
-<br>
-
----
-
 ## 파일: `mattest.py`
 
 ```python
