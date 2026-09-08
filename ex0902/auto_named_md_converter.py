@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import argparse
 
-def create_markdown_template(directory_path, overwrite=False):
+def create_markdown_template(directory_path, overwrite=False, recursive=False):
     target_dir = Path(directory_path).resolve()
     current_script_path = Path(__file__).resolve()
     
@@ -21,9 +21,13 @@ def create_markdown_template(directory_path, overwrite=False):
         print("💡 (새 파일명으로 작성하거나 덮어쓰려면 -f / --force 옵션을 사용하세요.)")
         return
     
-    # .py 파일과 .ipynb 파일 모두 찾기
-    py_files = list(target_dir.glob("*.py"))
-    ipynb_files = list(target_dir.glob("*.ipynb"))
+    # .py 파일과 .ipynb 파일 찾기 (재귀 옵션 적용)
+    if recursive:
+        py_files = list(target_dir.rglob("*.py"))
+        ipynb_files = list(target_dir.rglob("*.ipynb"))
+    else:
+        py_files = list(target_dir.glob("*.py"))
+        ipynb_files = list(target_dir.glob("*.ipynb"))
     
     # 모든 파일을 합치고 정렬
     all_files = sorted(py_files + ipynb_files)
@@ -39,14 +43,16 @@ def create_markdown_template(directory_path, overwrite=False):
     md_lines.append(f"# {target_dir.name} 실습 코드 정리\n")
 
     for file_path in all_files:
-        md_lines.append(f"## 파일: `{file_path.name}`\n")
+        # 파일 경로를 보기 좋게 타겟 디렉터리 기준 상대 경로로 변환 (예: subdir/test.py)
+        relative_path = file_path.relative_to(target_dir)
+        md_lines.append(f"## 파일: `{relative_path}`\n")
         
         if file_path.suffix == '.ipynb':
             with open(file_path, 'r', encoding='utf-8') as f:
                 try:
                     notebook = json.load(f)
                 except json.JSONDecodeError:
-                    print(f"'{file_path.name}' 파일을 읽는 중 오류가 발생했습니다. (JSON 파싱 실패)")
+                    print(f"'{relative_path}' 파일을 읽는 중 오류가 발생했습니다. (JSON 파싱 실패)")
                     continue
             
             for cell in notebook.get('cells', []):
@@ -79,14 +85,17 @@ def create_markdown_template(directory_path, overwrite=False):
         f.write("\n".join(md_lines))
         
     print(f"통합 템플릿 생성 완료: {out_file.name} (저장 위치: {out_file.absolute()})")
+    if recursive:
+        print(f"총 {len(all_files)}개의 파일이 하위 디렉터리에서 성공적으로 병합되었습니다.")
 
 def main():
     parser = argparse.ArgumentParser(description="디렉터리 내의 모든 .py와 .ipynb 파일을 '디렉터리_이름.md' 파일로 병합합니다.")
     parser.add_argument("directory", help="변환할 파일들이 있는 디렉터리 경로")
     parser.add_argument("-f", "--force", action="store_true", help="기존 .md 파일이 존재하더라도 강제로 덮어씁니다.")
+    parser.add_argument("-r", "--recursive", action="store_true", help="하위 디렉터리까지 재귀적으로 탐색하여 파일을 포함합니다.")
     args = parser.parse_args()
     
-    create_markdown_template(args.directory, overwrite=args.force)
+    create_markdown_template(args.directory, overwrite=args.force, recursive=args.recursive)
 
 if __name__ == '__main__':
     main()
