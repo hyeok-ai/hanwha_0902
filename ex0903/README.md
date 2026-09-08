@@ -61,7 +61,7 @@ a="Hellu, World!"
 print(a.replace("H", "J"))
 ```
 
-* replace 연산을 통해 문자열 치환
+* replace 메소드 통해 문자열 치환
 
 <br>
 
