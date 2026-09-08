@@ -110,7 +110,7 @@ a()
 
 ---
 
-## 파일: `ctrlcv4.py`
+## 파일: `global_variable.py`
 
 ```python
 def myfunc():
@@ -128,7 +128,7 @@ print(x)
 
 ---
 
-## 파일: `mattest.py`
+## 파일: `plt_line_plot.py`
 
 ```python
 import matplotlib.pyplot as plt
@@ -147,7 +147,7 @@ plt.show()
 
 ---
 
-## 파일: `test.py`
+## 파일: `st_pyplot.py`
 
 ```python
 import streamlit as st
@@ -195,7 +195,7 @@ st.pyplot(fig)
 
 ---
 
-## 파일: `test2.py`
+## 파일: `st_line_chart.py`
 
 ```python
 import streamlit as st
@@ -215,7 +215,7 @@ st.line_chart(chart_data)
 
 ---
 
-## 파일: `test_mat.py`
+## 파일: `matplotlib_version.py`
 
 ```python
 import matplotlib
@@ -229,7 +229,7 @@ print(matplotlib.__version__)
 
 ---
 
-## 파일: `test_title.py`
+## 파일: `st_dataframe.py`
 
 ```python
 import pandas as pd
