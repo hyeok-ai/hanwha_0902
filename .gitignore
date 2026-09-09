@@ -1,5 +1,6 @@
 .auto_named_md_converter.py
 *temp*.pdf
+*temp*.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
