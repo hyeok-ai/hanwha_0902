@@ -144,8 +144,9 @@ async def calculator(operator: Operator, operand1: float, operand2: float):
 * **일괄 변경 실행**: `Ctrl + Alt + Enter` (macOS: `Cmd + Enter`)
 * **검색 옵션**: 대소문자 구분(`Aa`), 전체 단어 일치(`ab`), 정규식 사용(`.*`)
 
+---
 
-## 비동기 및 멀티태스킹 기술 요약
+## 5. 비동기 및 멀티태스킹 기술 요약
 
 참고 문서: async와멀티태스킹_temp.pdf
 
