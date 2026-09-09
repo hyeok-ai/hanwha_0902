@@ -27,6 +27,27 @@ class ArticleUpdate(BaseModel):
 @app.get("/articles")
 async def get_articles():
     return {"inventory": pawn_db}
+'''
+{
+  "inventory": {
+    "1": {
+      "name": "금목걸이",
+      "loan_amount": 400,
+      "status": "pawned"
+    },
+    "2": {
+      "name": "롤렉스",
+      "loan_amount": 300000,
+      "status": "pawned"
+    },
+    "3": {
+      "name": "banana",
+      "loan_amount": 20220200202020,
+      "status": "pawned"
+    }
+  }
+}
+'''
 
 @app.post("/articles")
 async def pawn_item(article: Article):
