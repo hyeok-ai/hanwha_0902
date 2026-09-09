@@ -2,9 +2,11 @@ from fastapi import FastAPI, HTTPException, Response, Request
 from pydantic import BaseModel
 from typing import Optional, Dict
 
-app = FastAPI(title="현대 전당포 API", description="전당포 물품 관리 API")
+app = FastAPI(title="전당포 API", description="전당포 물품 관리 API")
 
 # 인메모리 데이터베이스
+# 변수 하나에도 타입 힌트를 사용함
+# 하지만 이와 다른 타입의 값을 집어넣어도 실행은 됨.
 pawn_db: Dict[int, dict] = {
     1: {"name": "금목걸이", "loan_amount": 400, "status": "pawned"},
     2: {"name": "롤렉스", "loan_amount": 300000, "status": "pawned"}
@@ -20,6 +22,7 @@ class ArticleUpdate(BaseModel):
     name: Optional[str] = None
     loan_amount: Optional[int] = None
     status: Optional[str] = None
+
 
 @app.get("/articles")
 async def get_articles():
