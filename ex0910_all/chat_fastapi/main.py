@@ -18,18 +18,18 @@ def process_chat(message: UserMessage):
         response = "안녕하세요~"
 
     elif "종료" in prompt:
-        response = "종료는 불가합니다."
+        response = "종료 기능 구현중..."
 
     elif "도움말" in prompt:
-        response = "네?"
+        response = "도움말을 출력합니다."
 
     elif "잘가" in prompt:
-        response = "잘가요"
+        response = "안녕히가세요."
 
     else:
-        response = "나도"
+        response = "저도 그렇게 생각합니다."
 
-    return {
+    return {ㄴ
         "response": response
     }
         
