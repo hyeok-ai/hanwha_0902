@@ -19,7 +19,7 @@ for message in st.session_state.messages:
 # Accept user input
 if prompt := st.chat_input("What is up?"):
     # Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.messages.append({"role": "user", "content": prompt}) # 대화 기록에 추가함
     # Display user message in chat message container
     with st.chat_message("user"):
         st.markdown(prompt)
@@ -30,4 +30,4 @@ if prompt := st.chat_input("What is up?"):
         result = response.json()
 
         st.session_state.messages.append({"role": "assistant", "content": result['response']})
-        st.markdown(result['response'])
+        st.markdown(result['response']) # 실제로 답변을 화면에 출력함
