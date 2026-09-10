@@ -5,8 +5,11 @@ from typing import Optional, Dict
 app = FastAPI(title="전당포 API", description="전당포 물품 관리 API")
 
 # 인메모리 데이터베이스
+# Dict[int, dict]
 # 변수 하나에도 타입 힌트를 사용함
 # 하지만 이와 다른 타입의 값을 집어넣어도 실행은 됨.
+# 강제하려면 필요한 것이 Pydantic
+# 각각의 path operation function에서 검증함
 pawn_db: Dict[int, dict] = {
     1: {"name": "금목걸이", "loan_amount": 400, "status": "pawned"},
     2: {"name": "롤렉스", "loan_amount": 300000, "status": "pawned"}
@@ -54,6 +57,7 @@ async def pawn_item(article: Article):
     new_id = max(pawn_db.keys(), default=0) + 1
     pawn_db[new_id] = article.model_dump()
     return {"message": "새로운 물품이 등록됨.", "article_id": new_id, "article": pawn_db[new_id]}
+
 
 @app.get("/articles/{article_id}")
 async def get_article(article_id: int):
