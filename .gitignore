@@ -3,6 +3,7 @@
 .auto_named_md_converter.py
 *temp*.pdf
 *temp*.md
+*temp*.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
