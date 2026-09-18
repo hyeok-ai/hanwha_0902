@@ -1,0 +1,18 @@
+{
+  "lc": 1,
+  "type": "constructor",
+  "id": [
+    "langchain",
+    "prompts",
+    "prompt",
+    "PromptTemplate"
+  ],
+  "kwargs": {
+    "input_variables": [
+      "fruit"
+    ],
+    "template": "{fruit}\uc758 \uc0c9\uae54\uc774 \ubb50\uc57c?",
+    "template_format": "f-string"
+  },
+  "name": "PromptTemplate"
+}
